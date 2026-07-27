@@ -110,14 +110,37 @@ Nhóm đã thực hiện phỏng vấn nhanh 3 HR Recruiter/Talent Acquisition v
 
 ## 4.2 Research các giải pháp hiện có trên thị trường
 
-| Giải pháp / Tool | Link / Nguồn | Cách giải quyết | Ưu điểm | Hạn chế / Rủi ro | Bài học cho nhóm |
+| Giải pháp / Tool | Link / Nguồn kiểm chứng | Cách giải quyết | Ưu điểm | Hạn chế / Rủi ro | Bài học cho nhóm |
 |---|---|---|---|---|---|
-| Base Hiring (ATS) | base.vn/hiring | Quản lý pipeline tuyển dụng tập trung | Quy trình chuẩn, phân quyền tốt | Phải nhập thủ công hoặc ứng viên phải tự điền form dài | Cần tính năng tự trích xuất CV tự động thay vì bắt HR nhập liệu |
-| TopCV AI / Vietnamworks | topcv.vn | Gợi ý ứng viên phù hợp trên sàn | Có sẵn data ứng viên lớn | Chỉ dùng được trong nội bộ sàn đó, không gom được CV gửi qua Email/LinkedIn/ITViec | Giải pháp phải độc lập với sàn tuyển dụng, hỗ trợ gom file đa nguồn |
-| ChatGPT custom RAG / Prompt | openai.com | Paste CV + JD vào prompt để hỏi | Phân tích sâu, linh hoạt | Thao tác copy-paste thủ công từng CV tốn thời gian, dễ nhầm lẫn | Cần cấu trúc dạng **Workflow tự động đọc batch file**, không làm thủ công từng file |
+| **Base Hiring (ATS)** | [base.vn/hiring](https://base.vn/hiring) | Quản lý pipeline tuyển dụng tập trung | Quy trình chuẩn, phân quyền doanh nghiệp tốt | Phải nhập thủ công hoặc ứng viên phải tự điền form dài | Cần tính năng tự trích xuất CV tự động thay vì bắt HR nhập liệu thủ công |
+| **TopCV AI / Vietnamworks** | [topcv.vn](https://topcv.vn) | Gợi ý ứng viên phù hợp trên sàn | Có sẵn kho dữ liệu ứng viên lớn | Chỉ dùng được trong nội bộ sàn đó, không gom được CV từ Email/LinkedIn/ITViec | Giải pháp phải độc lập với sàn tuyển dụng, hỗ trợ gom file đa nguồn |
+| **Wantedlab AI (Hàn Quốc)** | [wantedlab.com](https://www.wantedlab.com) | AI Matching engine dự đoán % tỷ lệ trúng tuyển của ứng viên | Mô hình AI Matching mạnh, tối ưu hóa matching theo data lịch sử | Chỉ hoạt động trên ecosystem của Wanted, không hỗ trợ gom CV rải rác ngoài sàn | Chứng minh tính hiệu quả của AI Matching score, nhưng giải pháp nhóm cần làm Hub gom file độc lập |
+| **ChatGPT custom RAG / Prompt** | [openai.com](https://openai.com) | Paste CV + JD vào prompt để hỏi | Phân tích ngữ cảnh sâu, linh hoạt | Thao tác copy-paste thủ công từng CV tốn thời gian, dễ nhầm lẫn | Cần cấu trúc dạng **Workflow tự động đọc batch file**, không làm thủ công từng file |
 
 **Research Takeaway**:
 > Giải pháp tối ưu không phải là thay thế HR bằng 1 Agent tự quyết định đậu/rớt, mà là xây dựng **Workflow tự động gom file -> AI Parsing & Scoring -> Đưa vào bảng Dashboard cho HR duyệt**.
+
+## 4.3 Áp dụng thực hành Human-Centered AI từ Google PAIR Guidebook
+Nhóm nghiên cứu và áp dụng bộ nguyên tắc thiết kế AI hướng tới con người từ [Google PAIR Guidebook (People + AI Research)](https://pair.withgoogle.com/guidebook/):
+
+1. **Xác định rõ Nhu cầu người dùng (User Need vs AI Capability)**:
+   - HR không cần một "AI thông minh thay thế con người", mà cần công cụ **xóa bỏ thao tác lặp lại nhàm chán** (chuyển tab, đọc lướt, gõ Excel) để họ tập trung vào khâu đánh giá chất lượng ứng viên.
+2. **Thiết lập kỳ vọng & Xử lý điểm thất bại (Setting Expectations & Failure Modes)**:
+   - AI hiển thị minh bạch lý do chấm điểm (Breakdown điểm Kinh nghiệm, Kỹ năng, Project theo JD).
+   - Khi CV dạng ảnh quét bị lỗi trích xuất (OCR error), hệ thống **gắn nhãn rõ ràng "Needs Manual Review"** thay vì đoán mò số liệu sai.
+3. **Vòng phản hồi con người (Feedback Loop & Human Controls)**:
+   - HR luôn có nút *"Xem CV gốc"* và *"Sửa điểm % Match"* trực tiếp trên Dashboard trước khi phát hành danh sách mời phỏng vấn.
+
+## 4.4 Phân định Bằng chứng đã chắc vs Giả định còn mở
+
+### ✅ Bằng chứng đã kiểm chứng (Verified Evidence)
+* **Thực trạng chuyển tab & gõ Excel thủ công tốn 4-5 tiếng**: Xác nhận 100% qua phỏng vấn 3 HR Recruiter & 8/8 survey nhân sự thực tế.
+* **Các sàn tuyển dụng không liên kết dữ liệu**: Đã kiểm tra tính năng của TopCV, LinkedIn, ITViec, Vietnamworks, Base Hiring — tất cả hoạt động trên các silo dữ liệu độc lập.
+* **Nhu cầu gom CV đa nguồn về 1 Hub**: 87.5% HR được hỏi mong muốn có công cụ tự động gom file về 1 nơi thay vì mở nhiều tab.
+
+### ❓ Giả định còn mở cần đo lường trong đợt Pilot (Open Assumptions)
+* **Tỷ lệ nhận diện đúng định dạng CV (Parsing Accuracy)**: Giả định LLM trích xuất chính xác > 90% các trường dữ liệu trên các mẫu CV phức tạp (cần kiểm chứng lại trên 30 CV mẫu đợt Pilot).
+* **Mức độ hài lòng của HR với bảng điểm 100**: Giả định thang điểm 100 theo 5 tiêu chí (Kinh nghiệm, Học vấn, Project, Ngoại ngữ, Kỹ năng) giúp HR ra quyết định nhanh hơn gấp 5 lần (cần đo lường thời gian review thực tế của HR trên Dashboard).
 
 ---
 
